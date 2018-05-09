@@ -5,23 +5,24 @@
 	<meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="style.css">
 	<style type="text/css">
 		a:hover {text-decoration: none;}
 	</style>
 </head>
 <body ng-controller="StoreController as store">
-	<div class="container">
-	<h1 style="text-align: center; text-decoration: underline;" >FlatLander Gem Store</h1>
-	<h2 style="text-align: center;">--An Angular Store--</h2>		
+	<div class="container-fluid navv">
+		<h1 class="head">FlatLander Gem Store</h1>
+		<h2 class="head">--An Angular Store--</h2>		
 	</div>
 	<br><br>
-	<div ng-repeat="product in store.products" class="container" style="border: 1px solid grey">
+	<div ng-repeat="product in store.products" class="container box">
 		<h1>{{product.name}} <span ><h2 style="float: right; margin: 0px;">${{product.price}} </h2> </span></h1>
-		<center><img ng-src="{{product.image}}" height="15%" width="15%" style="border: 1px solid black;"></center>
+		<center><img ng-src="{{product.image}}" height="15%" width="15%"></center>
 		<br><br>
 		<div ng-init="tab = 1">
 			<ul class="nav nav-pills">
-				<li ng-class="{ active: tab === 1}"><a href ng-click="tab = 1">Decription &nbsp;</a></li>
+				<li ng-class="{ active: tab === 1}"><a href ng-click="tab = 1">Description &nbsp;</a></li>
 				<li ng-class="{active: tab === 2}"><a href ng-click="tab = 2">Specifications &nbsp;</a></li>
 				<li ng-class="{active: tab === 3}"><a href ng-click="tab = 3">Reviews &nbsp;</a></li>
 			</ul>
@@ -32,7 +33,7 @@
 			</div>
 			<div class="panel" ng-show="tab === 2">
 				<h4>Specification</h4>
-				<blockquote>None Yet</blockquote>
+				<blockquote>{{product.specs}}</blockquote>
 			</div>
 			<div class="panel" ng-show="tab === 3">
 				<h4>Review</h4>
@@ -41,7 +42,7 @@
 					{{reviews.body}}
 					<cite>-{{reviews.author}}</cite>					
 				</blockquote>
-				<form name="review form">
+				<form name="review form" class="rev-form">
 					<select style="width: 100%">
 							<option>5</option>
 							<option>4</option>
@@ -59,7 +60,7 @@
 			</div>
 			
 		</div>
-		<center><p><button ng-show="product.canPurchase">Add to cart</button></p></center>
+		<center><p><button ng-show="product.canPurchase" id="cart-button">Add to cart</button></p></center>
 
 	</div>
 	<br><br>
